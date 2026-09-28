@@ -58,11 +58,7 @@ public class ProductoController {
 
     public ProductoModel crearProductoPedido(Integer id, Integer cantidad) throws Exception {
         ProductoModel producto = buscarProducto(id);
-        ProductoModel productoPedido = new ProductoModel();
         disminuirStock(producto, cantidad);
-        productoPedido.setStock(cantidad);
-        productoPedido.setNombre(producto.getNombre());
-        productoPedido.setPrecio(producto.getPrecio());
-        return productoPedido;
+        return (ProductoModel) producto.clone();
     }
 }

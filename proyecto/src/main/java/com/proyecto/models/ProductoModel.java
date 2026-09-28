@@ -1,6 +1,6 @@
 package com.proyecto.models;
 
-public class ProductoModel {
+public class ProductoModel implements Cloneable{
     private String nombre;
     private Double precio;
     private Integer stock;
@@ -11,6 +11,17 @@ public class ProductoModel {
         this.precio = precio;
         this.stock = stock;
     }
+
+    
+
+    public ProductoModel(String nombre, Double precio, Integer stock, Integer id) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+        this.id = id;
+    }
+
+
 
     public ProductoModel() {
     }
@@ -43,6 +54,9 @@ public class ProductoModel {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -55,9 +69,14 @@ public class ProductoModel {
         return sb.toString();
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public Object clone(){
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new ProductoModel(nombre,precio,stock,id);
+        }
     }
 
-
+    
 }
